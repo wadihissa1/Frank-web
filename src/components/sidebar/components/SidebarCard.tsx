@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Button,
   Flex,
@@ -6,10 +8,10 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import logoWhite from '../../../../public/img/layout/logoWhite.png';
+import FrankIconWhite from '../../../../public/img/svgs/FrankIconWhite.svg';
 
 export default function SidebarDocs() {
-  const bgColor = 'linear-gradient(135deg, #868CFF 0%, #4318FF 100%)';
+  const bgColor = 'linear-gradient(135deg, #4D76FF 0%, #0F5CA8  100%)';
   const borderColor = useColorModeValue('white', 'navy.800');
 
   return (
@@ -24,7 +26,7 @@ export default function SidebarDocs() {
       <Flex
         border="5px solid"
         borderColor={borderColor}
-        bg="linear-gradient(135deg, #868CFF 0%, #4318FF 100%)"
+        bg="linear-gradient(135deg, #4D76FF 0%, #0F5CA8 100%)"
         borderRadius="50%"
         w="80px"
         h="80px"
@@ -36,7 +38,7 @@ export default function SidebarDocs() {
         top="-47px"
         transform="translate(-50%, 0%)"
       >
-        <Img src={logoWhite.src} w="40px" h="40px" />
+        <Img src={FrankIconWhite.src} w="50px" h="50px" />
       </Flex>
       <Flex
         direction="column"
@@ -54,11 +56,10 @@ export default function SidebarDocs() {
           textAlign="center"
           mb="14px"
         >
-          Go unlimited with PRO
+          Go unlimited with Frank
         </Text>
         <Text fontSize="14px" color={'white'} mb="14px" textAlign="center">
-          Get your AI Project to another level and start doing more with Horizon
-          AI Template PRO!
+          This is Frank Your Antonine University Assistant
         </Text>
       </Flex>
       <Link href="https://horizon-ui.com/ai-template" isExternal>
@@ -74,7 +75,7 @@ export default function SidebarDocs() {
           mx="auto"
           borderRadius="45px"
         >
-          Get started with PRO
+          Get started with FRANK
         </Button>
       </Link>
     </Flex>

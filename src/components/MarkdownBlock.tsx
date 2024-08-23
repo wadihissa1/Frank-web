@@ -25,7 +25,7 @@ export const MarkdownBlock: FC<Props> = ({
   return (
     <div className="relative">
       <button
-        className="absolute right-0 top-0 z-10 rounded bg-[#1A1B26] p-1 text-xs text-white hover:bg-[#2D2E3A] active:bg-[#2D2E3A]"
+        className="absolute right-0 top-0 z-10 rounded bg-[#0F5CA8] p-1 text-xs text-white hover:bg-[#0F5CA8] active:bg-[#0F5CA8]"
         onClick={() => {
           navigator.clipboard.writeText(code);
           setCopyText('Copied!');

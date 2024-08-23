@@ -1,9 +1,9 @@
 'use client';
 // Chakra imports
-import { Flex, useColorModeValue } from '@chakra-ui/react';
+import { Flex, Img, useColorModeValue } from '@chakra-ui/react';
 
-import { HorizonLogo } from '@/components/icons/Icons';
 import { HSeparator } from '@/components/separator/Separator';
+import Fullualogo from '../../../../public/img/layout/fullualogo.png'; // Adjust the path to your logo
 
 export function SidebarBrand() {
   //   Chakra color mode
@@ -11,7 +11,7 @@ export function SidebarBrand() {
 
   return (
     <Flex alignItems="center" flexDirection="column">
-      <HorizonLogo h="26px" w="146px" my="30px" color={logoColor} />
+      <Img src={Fullualogo.src} alt="Fullualogo"  />
       <HSeparator mb="20px" w="284px" />
     </Flex>
   );
