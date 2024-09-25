@@ -13,17 +13,17 @@ import {
   Button,
   Flex,
   Icon,
-  Img,
   Input,
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { MdEdit, MdPerson } from 'react-icons/md';
-import FrankIconBlack from '/public/img/svgs/FrankIconBlack.svg'; // Ensure the path is correct
-import FrankIconWhite from '/public/FrankIconWhite';
+import Image from 'next/image'; // Correctly using next/image for SVGs
+import FrankIconBlack from '/public/img/svgs/FrankIconBlack.svg'; 
+import FrankIconWhite from '/public/img/svgs/FrankIconWhite.svg';
 
-export default function Chat(props: { apiKeyApp: string }) {
+export default function Chat() {
   const [inputCode, setInputCode] = useState<string>('');
   const [messages, setMessages] = useState<{ input: string; output: string }[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -67,7 +67,7 @@ export default function Chat(props: { apiKeyApp: string }) {
     setLoading(true);
 
     try {
-      const response = await fetch('http://192.168.1.140:5000/ask', {
+      const response = await fetch('http://192.168.0.104:5000/ask', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ export default function Chat(props: { apiKeyApp: string }) {
       });
 
       if (!response.ok) {
-        throw new Error('Something went wrong went fetching from the API.');
+        throw new Error('Something went wrong fetching from the API.');
       }
 
       const data = await response.json();
@@ -88,7 +88,11 @@ export default function Chat(props: { apiKeyApp: string }) {
       ]);
       setInputCode('');
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) {
+        alert(error.message);
+      } else {
+        alert('An unknown error occurred');
+      }
     } finally {
       setLoading(false);
     }
@@ -105,15 +109,19 @@ export default function Chat(props: { apiKeyApp: string }) {
       direction="column"
       position="relative"
     >
-      <Img
-        src={FrankIconBlack.src}
+      <Image
+        src={FrankIconBlack}
         alt="Frank Icon"
-        position={'absolute'}
-        w="350px"
-        left="50%"
-        top="50%"
-        transform={'translate(-50%, -50%)'}
-        opacity="0.3"
+        layout="intrinsic"
+        width={350}
+        height={350}
+        style={{
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+          opacity: 0.3,
+        }}
       />
       <Flex
         direction="column"
@@ -132,7 +140,18 @@ export default function Chat(props: { apiKeyApp: string }) {
               _focus={{ border: '0px solid', bg: 'none' }}
             >
               <Box flex="1" display="flex" alignItems="center" textAlign="left">
-                <Icon as={FrankIconWhite} w="20px" h="20px" color={frankIconColor} mr="8px" />
+                <Icon
+                  as={() => (
+                    <Image
+                      src={FrankIconWhite}
+                      alt="Frank Icon"
+                      width={20}
+                      height={20}
+                    />
+                  )}
+                  color={frankIconColor}
+                  mr="8px"
+                />
                 <Text color={gray} fontWeight="500" fontSize="sm">
                   Frank
                 </Text>
@@ -208,9 +227,14 @@ export default function Chat(props: { apiKeyApp: string }) {
                   minW="40px"
                 >
                   <Icon
-                    as={FrankIconWhite}
-                    width="20px"
-                    height="20px"
+                    as={() => (
+                      <Image
+                        src={FrankIconWhite}
+                        alt="Frank Icon"
+                        width={20}
+                        height={20}
+                      />
+                    )}
                     color="white"
                   />
                 </Flex>
@@ -247,7 +271,7 @@ export default function Chat(props: { apiKeyApp: string }) {
             ms="auto"
             w={{ base: '160px', md: '210px' }}
             h="54px"
-            bg={'linear-gradient(15.46deg, #0F5CA5  26.3%,   #0F5CA8 86.4%)'} // Updated background color
+            bg={'linear-gradient(15.46deg, #0F5CA5  26.3%,   #0F5CA8 86.4%)'} 
             _hover={{
               boxShadow:
                 '0px 21px 27px -10px rgba(65, 109, 255, 0.48) !important',

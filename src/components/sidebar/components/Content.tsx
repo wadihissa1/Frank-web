@@ -18,7 +18,6 @@ import NavLink from '@/components/link/NavLink';
 //   Custom components
 import avatar4 from '/public/img/avatars/avatar4.png';
 import { NextAvatar } from '@/components/image/Avatar';
-import APIModal from '@/components/apiModal';
 import Brand from '@/components/sidebar/components/Brand';
 import Links from '@/components/sidebar/components/Links';
 import SidebarCard from '@/components/sidebar/components/SidebarCard';
@@ -38,7 +37,7 @@ interface SidebarContent extends PropsWithChildren {
 }
 
 function SidebarContent(props: SidebarContent) {
-  const { routes, setApiKey } = props;
+  const { routes } = props; // Removed setApiKey
   const textColor = useColorModeValue('navy.700', 'white');
   const borderColor = useColorModeValue('gray.200', 'whiteAlpha.300');
   const bgColor = useColorModeValue('white', 'navy.700');
@@ -52,6 +51,7 @@ function SidebarContent(props: SidebarContent) {
     'none',
   );
   const gray = useColorModeValue('gray.500', 'white');
+
   // SIDEBAR
   return (
     <Flex
@@ -73,7 +73,7 @@ function SidebarContent(props: SidebarContent) {
       <Box mt="60px" width={'100%'} display={'flex'} justifyContent={'center'}>
         <SidebarCard />
       </Box>
-      
+
       <Flex
         mt="8px"
         justifyContent="center"
@@ -172,7 +172,12 @@ function SidebarContent(props: SidebarContent) {
                   opacity="0.4"
                   me="12px"
                 />
-                <Text color={gray} fontWeight="500" fontSize="sm" opacity="0.4">
+                <Text
+                  color={gray}
+                  fontWeight="500"
+                  fontSize="sm"
+                  opacity="0.4"
+                >
                   History
                 </Text>
                 <Link
@@ -204,7 +209,12 @@ function SidebarContent(props: SidebarContent) {
                   opacity="0.4"
                   me="12px"
                 />
-                <Text color={gray} fontWeight="500" fontSize="sm" opacity="0.4">
+                <Text
+                  color={gray}
+                  fontWeight="500"
+                  fontSize="sm"
+                  opacity="0.4"
+                >
                   Usage
                 </Text>
                 <Link
@@ -236,7 +246,12 @@ function SidebarContent(props: SidebarContent) {
                   opacity="0.4"
                   me="12px"
                 />
-                <Text color={gray} fontWeight="500" fontSize="sm" opacity="0.4">
+                <Text
+                  color={gray}
+                  fontWeight="500"
+                  fontSize="sm"
+                  opacity="0.4"
+                >
                   My Plan
                 </Text>
                 <Link

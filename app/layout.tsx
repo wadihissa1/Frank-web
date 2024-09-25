@@ -1,6 +1,5 @@
 'use client';
 import React, { ReactNode } from 'react';
-import type { AppProps } from 'next/app';
 import { ChakraProvider, Box, Portal, useDisclosure } from '@chakra-ui/react';
 import theme from '@/theme/theme';
 import routes from '@/routes';
@@ -9,7 +8,6 @@ import Footer from '@/components/footer/FooterAdmin';
 import Navbar from '@/components/navbar/NavbarAdmin';
 import { getActiveRoute, getActiveNavbar } from '@/utils/navigation';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import '@/styles/App.css';
 import '@/styles/Contact.css';
 import '@/styles/Plugins.css';
@@ -18,15 +16,7 @@ import AppWrappers from './AppWrappers';
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const [apiKey, setApiKey] = useState('');
   const { isOpen, onOpen, onClose } = useDisclosure();
-  useEffect(() => {
-    const initialKey = localStorage.getItem('apiKey');
-    console.log(initialKey);
-    if (initialKey?.includes('sk-') && apiKey !== initialKey) {
-      setApiKey(initialKey);
-    }
-  }, [apiKey]);
 
   return (
     <html lang="en">
@@ -37,7 +27,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             children
           ) : (
             <Box>
-              <Sidebar setApiKey={setApiKey} routes={routes} />
+              <Sidebar routes={routes} /> {/* Removed setApiKey */}
               <Box
                 pt={{ base: '60px', md: '100px' }}
                 float="right"
@@ -56,12 +46,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 <Portal>
                   <Box>
                     <Navbar
-                      setApiKey={setApiKey}
                       onOpen={onOpen}
                       logoText={'UA Frank'}
                       brandText={getActiveRoute(routes, pathname)}
                       secondary={getActiveNavbar(routes, pathname)}
-                    />
+                    /> {/* Removed setApiKey */}
                   </Box>
                 </Portal>
                 <Box
@@ -72,7 +61,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                   pt="50px"
                 >
                   {children}
-                  {/* <Component apiKeyApp={apiKey} {...pageProps} /> */}
                 </Box>
                 <Box>
                   <Footer />
