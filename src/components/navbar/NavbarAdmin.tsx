@@ -122,7 +122,6 @@ export default function AdminNavbar() {
               boxShadow: 'none',
             }}
           >
-            Dashboard
           </Link>
         </Box>
         <Box ms="auto" w={{ sm: '100%', md: 'unset' }}>
