@@ -1,64 +1,51 @@
 'use client';
-/* eslint-disable */
 
+/* eslint-disable */
 // chakra imports
 import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
   Box,
   Flex,
-  HStack,
-  Text,
-  List,
   Icon,
-  ListItem,
+  Text,
   useColorModeValue,
-  Link,
 } from '@chakra-ui/react';
 import { FaCircle } from 'react-icons/fa';
-import { IoMdAdd } from 'react-icons/io';
 import NavLink from '@/components/link/NavLink';
-import { IRoute } from '@/types/navigation';
-import { PropsWithChildren, useCallback } from 'react';
-import { usePathname } from 'next/navigation';
 
-interface SidebarLinksProps extends PropsWithChildren {
-  routes?: IRoute[];
-}
-
-export function SidebarLinks(props: SidebarLinksProps) {
+export function SidebarLinks() {
   // Chakra color mode
-  const pathname = usePathname();
   let activeColor = useColorModeValue('navy.700', 'white');
-  let inactiveColor = useColorModeValue('gray.500', 'gray.500');
-  let activeIcon = useColorModeValue('brand.500', 'white');
   let iconColor = useColorModeValue('navy.700', 'white');
-
-  const { routes = [] } = props; // Default to empty array if routes are not provided
-
-  // verifies if routeName is the one active (in browser input)
-  const activeRoute = useCallback(
-    (routeName: string) => {
-      return pathname?.includes(routeName);
-    },
-    [pathname]
-  );
 
   return (
     <Box>
-      {/* You can add any static content or components here */}
-      <Text fontSize="lg" fontWeight="bold" color={activeColor}>
+      {/* Static Header */}
+      <Text fontSize="lg" fontWeight="bold" color={activeColor} mb="20px">
         Frank
       </Text>
-      {/* Example of a static link */}
+
+      {/* Static Links */}
       <NavLink href="/home">
-        <Flex alignItems="center">
+        <Flex alignItems="center" mb="12px">
           <Icon as={FaCircle} w="6px" h="6px" me="8px" color={iconColor} />
           <Text color={activeColor} fontWeight="500" fontSize="sm">
             Chats
+          </Text>
+        </Flex>
+      </NavLink>
+      <NavLink href="/profile">
+        <Flex alignItems="center" mb="12px">
+          <Icon as={FaCircle} w="6px" h="6px" me="8px" color={iconColor} />
+          <Text color={activeColor} fontWeight="500" fontSize="sm">
+            Profile
+          </Text>
+        </Flex>
+      </NavLink>
+      <NavLink href="/settings">
+        <Flex alignItems="center" mb="12px">
+          <Icon as={FaCircle} w="6px" h="6px" me="8px" color={iconColor} />
+          <Text color={activeColor} fontWeight="500" fontSize="sm">
+            Settings
           </Text>
         </Flex>
       </NavLink>

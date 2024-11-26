@@ -1,39 +1,23 @@
-import { IRoute } from '@/types/navigation';
 // NextJS Requirement
 export const isWindowAvailable = () => typeof window !== 'undefined';
 
-export const findCurrentRoute = (
-  routes: IRoute[],
-  pathname: string,
-): IRoute | undefined => {
-  for (let route of routes) {
-    if (route.items) {
-      const found = findCurrentRoute(route.items, pathname);
-      if (found) return found;
-    }
-    if (pathname?.match(route.path) && route) {
-      return route;
-    }
-  }
+// Static Route Definition
+export const homepageRoute = {
+  name: 'Homepage',
+  path: '/',
 };
 
-export const getActiveRoute = (routes: IRoute[], pathname: string): string => {
-  const route = findCurrentRoute(routes, pathname);
-  return route?.name || 'Default Brand Text';
+// Function to Get the Active Route (Static Implementation)
+export const getActiveRoute = (pathname: string): string => {
+  return pathname === homepageRoute.path ? homepageRoute.name : 'Default Brand Text';
 };
 
-export const getActiveNavbar = (
-  routes: IRoute[],
-  pathname: string,
-): boolean => {
-  const route = findCurrentRoute(routes, pathname);
-  if (route?.secondary) return route?.secondary;
-  else return false;
+// Function to Check if Active Navbar is Needed (Always False for Static Setup)
+export const getActiveNavbar = (pathname: string): boolean => {
+  return false; // No secondary navbar for the single route
 };
 
-export const getActiveNavbarText = (
-  routes: IRoute[],
-  pathname: string,
-): string | boolean => {
-  return getActiveRoute(routes, pathname) || false;
+// Function to Get Active Navbar Text
+export const getActiveNavbarText = (pathname: string): string | boolean => {
+  return getActiveRoute(pathname) || false;
 };

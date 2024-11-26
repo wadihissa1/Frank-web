@@ -3,12 +3,10 @@
 // Chakra Imports
 import {
   Box,
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
   Flex,
   Link,
   useColorModeValue,
+  Image,
 } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import AdminNavbarLinks from './NavbarLinksAdmin';
@@ -32,9 +30,8 @@ export default function AdminNavbar(props: {
 
   const { secondary, brandText } = props;
 
-  // Here are all the props that may change depending on navbar's type or state.(secondary, variant, scrolled)
+  // Navbar styles based on state
   let mainText = useColorModeValue('navy.700', 'white');
-  let secondaryText = useColorModeValue('gray.700', 'white');
   let navbarPosition = 'fixed' as const;
   let navbarFilter = 'none';
   let navbarBackdrop = 'blur(20px)';
@@ -46,12 +43,13 @@ export default function AdminNavbar(props: {
   let navbarBorder = 'transparent';
   let secondaryMargin = '0px';
   let gap = '0px';
+
   const changeNavbar = () => {
     if (isWindowAvailable() && window.scrollY > 1) {
       setScrolled(true);
     } else {
       setScrolled(false);
-    }
+    };
   };
 
   return (
@@ -65,7 +63,7 @@ export default function AdminNavbar(props: {
       backdropFilter={navbarBackdrop}
       backgroundPosition="center"
       backgroundSize="cover"
-      borderRadius="16px"
+      borderRadius="40px" /* Removed borderRadius for a full-width look */
       borderWidth="1.5px"
       borderStyle="solid"
       transitionDelay="0s, 0s, 0s, 0s"
@@ -77,10 +75,10 @@ export default function AdminNavbar(props: {
       minH="75px"
       justifyContent={{ xl: 'center' }}
       lineHeight="25.6px"
-      mx="auto"
+      mx="10px" /* Ensure no margins are added */
       mt={secondaryMargin}
       pb="8px"
-      right={{ base: '12px', md: '30px', lg: '30px', xl: '30px' }}
+      right="0"
       px={{
         base: '8px',
         md: '10px',
@@ -90,14 +88,8 @@ export default function AdminNavbar(props: {
         md: '12px',
       }}
       pt="8px"
-      top={{ base: '12px', md: '16px', xl: '18px' }}
-      w={{
-        base: 'calc(100vw - 8%)',
-        md: 'calc(100vw - 8%)',
-        lg: 'calc(100vw - 6%)',
-        xl: 'calc(100vw - 350px)',
-        '2xl': 'calc(100vw - 365px)',
-      }}
+      top="5px" /* Align the navbar at the very top */
+      w="95%" /* Full width */
     >
       <Flex
         w="100%"
@@ -108,21 +100,17 @@ export default function AdminNavbar(props: {
         alignItems={{ xl: 'center' }}
         mb={gap}
       >
-        <Box mb={{ base: '8px', md: '0px' }}>
-          <Breadcrumb>
-            <BreadcrumbItem color={secondaryText} fontSize="sm" mb="5px">
-              <BreadcrumbLink href="#" color={secondaryText}>
-                Pages
-              </BreadcrumbLink>
-            </BreadcrumbItem>
+        <Box mb={{ base: '8px', md: '0px' }} display="flex" alignItems="center">
+          {/* UA Logo */}
+          <Image
+            src="/img/layout/fullualogo.png"
+            alt="UA Logo"
+            height="150px" /* Larger logo */
+            width="auto"   /* Maintain aspect ratio */
+            mr="16px"
+          />
 
-            <BreadcrumbItem color={secondaryText} fontSize="sm">
-              <BreadcrumbLink href="#" color={secondaryText}>
-                {brandText}
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-          </Breadcrumb>
-          {/* Here we create navbar brand, based on route name */}
+          {/* Brand Text */}
           <Link
             color={mainText}
             href="#"

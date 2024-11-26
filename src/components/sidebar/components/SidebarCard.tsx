@@ -75,7 +75,7 @@ export default function SidebarDocs() {
           mx="auto"
           borderRadius="45px"
         >
-          Get started with FRANK
+          Get started with Frank
         </Button>
       </Link>
     </Flex>
