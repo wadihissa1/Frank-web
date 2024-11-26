@@ -12,12 +12,7 @@ import { useState, useEffect } from 'react';
 import AdminNavbarLinks from './NavbarLinksAdmin';
 import { isWindowAvailable } from '@/utils/navigation';
 
-export default function AdminNavbar(props: {
-  secondary: boolean;
-  brandText: string;
-  logoText: string;
-  onOpen: (...args: any[]) => any;
-}) {
+export default function AdminNavbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -26,9 +21,7 @@ export default function AdminNavbar(props: {
     return () => {
       isWindowAvailable() && window.removeEventListener('scroll', changeNavbar);
     };
-  });
-
-  const { secondary, brandText } = props;
+  }, []);
 
   // Navbar styles based on state
   let mainText = useColorModeValue('navy.700', 'white');
@@ -49,7 +42,7 @@ export default function AdminNavbar(props: {
       setScrolled(true);
     } else {
       setScrolled(false);
-    };
+    }
   };
 
   return (
@@ -63,7 +56,7 @@ export default function AdminNavbar(props: {
       backdropFilter={navbarBackdrop}
       backgroundPosition="center"
       backgroundSize="cover"
-      borderRadius="40px" /* Removed borderRadius for a full-width look */
+      borderRadius="40px"
       borderWidth="1.5px"
       borderStyle="solid"
       transitionDelay="0s, 0s, 0s, 0s"
@@ -71,11 +64,11 @@ export default function AdminNavbar(props: {
       transition-property="box-shadow, background-color, filter, border"
       transitionTimingFunction="linear, linear, linear, linear"
       alignItems={{ xl: 'center' }}
-      display={secondary ? 'block' : 'flex'}
+      display="flex"
       minH="75px"
       justifyContent={{ xl: 'center' }}
       lineHeight="25.6px"
-      mx="10px" /* Ensure no margins are added */
+      mx="10px"
       mt={secondaryMargin}
       pb="8px"
       right="0"
@@ -88,8 +81,8 @@ export default function AdminNavbar(props: {
         md: '12px',
       }}
       pt="8px"
-      top="5px" /* Align the navbar at the very top */
-      w="95%" /* Full width */
+      top="5px"
+      w="95%"
     >
       <Flex
         w="100%"
@@ -105,8 +98,8 @@ export default function AdminNavbar(props: {
           <Image
             src="/img/layout/fullualogo.png"
             alt="UA Logo"
-            height="150px" /* Larger logo */
-            width="auto"   /* Maintain aspect ratio */
+            height="150px"
+            width="auto"
             mr="16px"
           />
 
@@ -129,11 +122,11 @@ export default function AdminNavbar(props: {
               boxShadow: 'none',
             }}
           >
-            {brandText}
+            Dashboard
           </Link>
         </Box>
         <Box ms="auto" w={{ sm: '100%', md: 'unset' }}>
-          <AdminNavbarLinks secondary={props.secondary} />
+          <AdminNavbarLinks/>
         </Box>
       </Flex>
     </Box>

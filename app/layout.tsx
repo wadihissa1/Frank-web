@@ -41,9 +41,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 <Portal>
                   <Box>
                     <Navbar
-                      onOpen={onOpen}
-                      logoText={'UA Frank'}
-
                     />
                   </Box>
                 </Portal>
