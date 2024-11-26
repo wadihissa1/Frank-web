@@ -98,7 +98,7 @@ export default function AdminNavbar() {
           <Image
             src="/img/layout/fullualogo.png"
             alt="UA Logo"
-            height="150px"
+            height="120px"
             width="auto"
             mr="16px"
           />

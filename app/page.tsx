@@ -165,7 +165,7 @@ export default function Chat() {
                 fontSize="sm"
                 textAlign={'center'}
               >
-                This is a cool text example.
+                Is Here From Students To Students.
               </Text>
             </AccordionPanel>
           </AccordionItem>
