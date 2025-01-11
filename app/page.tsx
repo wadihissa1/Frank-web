@@ -67,7 +67,7 @@ export default function Chat() {
     setLoading(true);
 
     try {
-      const response = await fetch('http://20.49.30.0:80/ask', {
+      const response = await fetch('http://20.49.30.0/ask', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
