@@ -20,7 +20,7 @@ export const OpenAIStream = async (inputCode) => {
 
   const askQuestion = async (question) => {
     try {
-      const response = await fetch('http://172.20.10.3:5000/ask', {
+      const response = await fetch('http://20.49.30.0:80/ask', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
