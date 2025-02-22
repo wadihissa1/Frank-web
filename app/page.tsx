@@ -91,12 +91,12 @@ export default function Chat() {
   const handleFileUpload = (event: any) => {
     const files = Array.from(event.target.files);
     const allowedFormats = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-    const validFiles = files.filter(file => allowedFormats.includes(file.type));
-    if (validFiles.length === 0) {
+    const validFiles = 0
+    if (validFiles) {
       alert('Only PDF and Word files are allowed.');
       return;
     }
-    setSelectedFiles([...selectedFiles, ...validFiles]);
+    setSelectedFiles([]);
   };
 
   return (
