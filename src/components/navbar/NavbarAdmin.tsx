@@ -93,36 +93,27 @@ export default function AdminNavbar() {
         alignItems={{ xl: 'center' }}
         mb={gap}
       >
-        <Box mb={{ base: '8px', md: '0px' }} display="flex" alignItems="center">
+        <Box
+          mb={{ base: '8px', md: '0px' }}
+          display="flex"
+          flexDirection={{ base: 'column', md: 'row' }}
+          alignItems="center"
+        >
           {/* UA Logo */}
           <Image
             src="/img/layout/fullualogo.png"
             alt="UA Logo"
-            height="120px"
+            height={{ base: '80px', md: '120px' }}
             width="auto"
-            mr="16px"
+            mr={{ md: '16px' }}
+            mb={{ base: '4px', md: '0px' }}
           />
-
-          {/* Brand Text */}
-          <Link
-            color={mainText}
-            href="#"
-            bg="inherit"
-            borderRadius="inherit"
-            fontWeight="bold"
-            fontSize="34px"
-            p="0px"
-            _hover={{ color: { mainText } }}
-            _active={{
-              bg: 'inherit',
-              transform: 'none',
-              borderColor: 'transparent',
-            }}
-            _focus={{
-              boxShadow: 'none',
-            }}
-          >
-          </Link>
+          <Image
+            src="/img/layout/ccdlogo.png"
+            alt="CCD Logo"
+            height={{ base: '60px', md: '80px' }}
+            width="auto"
+          />
         </Box>
         <Box ms="auto" w={{ sm: '100%', md: 'unset' }}>
           <AdminNavbarLinks/>

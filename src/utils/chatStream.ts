@@ -47,7 +47,7 @@ export const OpenAIStream = async (inputCode) => {
   const decoder = new TextDecoder();
 
   const stream = new ReadableStream({
-    async start(controller) {
+    start(controller) {
       const onParse = (event) => {
         if (event.type === 'event') {
           const data = event.data;
@@ -58,9 +58,14 @@ export const OpenAIStream = async (inputCode) => {
           }
 
           try {
-            const text = data;
-            const queue = encoder.encode(text);
-            controller.enqueue(queue);
+            (async () => {
+              for (let i = 0; i < data.length; i++) {
+                const text = data[i];
+                const queue = encoder.encode(text);
+                controller.enqueue(queue);
+                await new Promise((r) => setTimeout(r, 50)); // Simulating letter-by-letter typing effect
+              }
+            })();
           } catch (e) {
             controller.error(e);
           }
